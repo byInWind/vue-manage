@@ -9,6 +9,11 @@ export default new router({
             path: '/views/asd',
             name: 'asd',
             component: ()=> import('./views/asd.vue')
-        }
+        },
+        {
+            path: '/views/user',
+            name: 'user',
+            component: ()=> import('./views/user.vue')
+        },
     ]
 })
