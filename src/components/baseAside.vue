@@ -1,5 +1,5 @@
 <template>
-    <el-col :span="6">
+    <el-col :span="4">
         <el-menu
                 default-active="2"
                 class="el-menu-vertical-demo"
@@ -14,8 +14,12 @@
                     <span>导航一</span>
                 </template>
                 <el-menu-item-group>
-                    <router-link to="/views/user"><el-menu-item index="1-1">user</el-menu-item></router-link>
-                    <router-link to="/views/asd"><el-menu-item index="1-2">选项2</el-menu-item></router-link>
+                    <router-link to="/views/user">
+                        <el-menu-item index="1-1">user</el-menu-item>
+                    </router-link>
+                    <router-link to="/views/asd">
+                        <el-menu-item index="1-2">选项2</el-menu-item>
+                    </router-link>
                 </el-menu-item-group>
             </el-submenu>
             <el-menu-item index="2">
@@ -164,6 +168,8 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+    .el-menu-vertical-demo {
+        height: 100vh;
+    }
 </style>
