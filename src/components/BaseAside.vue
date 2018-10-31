@@ -10,8 +10,8 @@
                 active-text-color="#ffd04b">
             <el-submenu index="1">
                 <template slot="title">
-                    <i class="el-icon-location"></i>
-                    <span>导航一</span>
+                    <i class="el-icon-menu"></i>
+                    <span>首页</span>
                 </template>
                 <el-menu-item-group>
                     <router-link to="/views/user">
@@ -23,16 +23,36 @@
                 </el-menu-item-group>
             </el-submenu>
             <el-menu-item index="2">
-                <i class="el-icon-menu"></i>
-                <span slot="title">导航二</span>
+                <template slot="title">
+                    <i class="el-icon-plus"></i>
+                    <span slot="title">数据管理</span>
+                </template>
+                <el-menu-item-group>
+                    <router-link to="/views/user">
+                        <el-menu-item index="1-1">用户列表</el-menu-item>
+                    </router-link>
+                    <router-link to="/views/asd">
+                        <el-menu-item index="1-2">商家列表</el-menu-item>
+                    </router-link>
+                </el-menu-item-group>
             </el-menu-item>
-            <el-menu-item index="3" disabled>
-                <i class="el-icon-document"></i>
-                <span slot="title">导航三</span>
+            <el-menu-item index="3">
+                <template slot="title">
+                    <i class="el-icon-plus"></i>
+                    <span slot="title">添加数据</span>
+                </template>
+                <el-menu-item-group>
+                    <router-link to="/views/user">
+                        <el-menu-item index="1-1">添加商铺</el-menu-item>
+                    </router-link>
+                    <router-link to="/views/asd">
+                        <el-menu-item index="1-2">添加商品</el-menu-item>
+                    </router-link>
+                </el-menu-item-group>
             </el-menu-item>
             <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">导航四</span>
+                <i class="el-icon-edit"></i>
+                <span slot="title">个人中心</span>
             </el-menu-item>
         </el-menu>
     </el-col>
@@ -169,7 +189,10 @@
 </script>
 
 <style scoped lang="less">
-    .el-menu-vertical-demo {
-        height: 100vh;
+    .el-col {
+        min-width: 201px;
+        .el-menu-vertical-demo {
+            height: 100vh;
+        }
     }
 </style>
