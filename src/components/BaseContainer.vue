@@ -22,12 +22,15 @@
 </script>
 
 <style scoped lang="less">
-    .el-header {
-        background-color: #eff2f7;
-        color: #333;
-        line-height: 60px;
-        .el-breadcrumb {
-            line-height: 4;
+    .el-container {
+        margin-left: 200px;
+        .el-header {
+            background-color: #eff2f7;
+            color: #333;
+            line-height: 60px;
+            .el-breadcrumb {
+                line-height: 4;
+            }
         }
     }
 </style>
