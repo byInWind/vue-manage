@@ -1,6 +1,7 @@
 <template>
     <div>
         <el-table
+                v-loading="loading"
                 :data="tableData"
                 border
                 style="width: 100%">
@@ -33,12 +34,11 @@
             </el-table-column>
         </el-table>
         <div class="block">
-            <span class="demonstration">显示总数</span>
             <el-pagination
                     background
                     @current-change="handleCurrentChange"
                     :current-page.sync="currentPage"
-                    layout="total, prev, pager, next"
+                    layout="prev, pager, next"
                     :total="1000">
             </el-pagination>
         </div>
@@ -52,18 +52,21 @@
         name: "user_list",
         data() {
             return {
+                loading: false,
                 tableData: [],  //总的数据
                 currentPage: 1,
             }
         },
         methods: {
             ajax(val) {
+                this.loading = true;
                 val = val || 1;
                 let that = this;
                 let arr = [];
                 axios.get('https://elm.cangdu.org/v1/users/list', {
                     params: {
-                        limit: 20
+                        limit: 20,
+                        offset: val
                     }
                 }).then(function (response) {
                     console.log(response.data);
@@ -77,6 +80,7 @@
                         })
                     });
                     that.tableData = arr;
+                    that.loading = false;
                 })
             },
             //currentPage 改变时会触发
@@ -93,6 +97,7 @@
 
 <style scoped lang="less">
     .block {
+        text-align: center;
         margin-top: 20px;
     }
 </style>
