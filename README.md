@@ -14,3 +14,4 @@ npm run serve
 ![Error in render: "TypeError: Cannot read property 'matched' of undefined"](./public/bug-img/2.png)解决方案![x](./public/bug-img/1.png)
 2. import等路径以相对路径形式写，绝对路径可能报错
  
+ 
