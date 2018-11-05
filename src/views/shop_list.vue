@@ -118,7 +118,7 @@
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="show = false">取 消</el-button>
-                <el-button type="primary" @click="show = false">确 定</el-button>
+                <el-button type="primary" @click="submitForm">确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -195,6 +195,7 @@
             },
             handleEdit(index, row) {
                 console.log(index, row);
+                this.form.id = row.id;
                 this.form.address = row.address;
                 this.form.intro = row.des;
                 this.form.name = row.name;
@@ -204,7 +205,7 @@
                 this.show = true;
             },
             handleAvatarSuccess(res, file) {
-                this.imageUrl = URL.createObjectURL(file.raw);
+                this.form.img = URL.createObjectURL(file.raw);
             },
             beforeAvatarUpload(file) {
                 const isJPG = file.type === 'image/jpeg';
@@ -217,6 +218,30 @@
                     this.$message.error('上传头像图片大小不能超过 2MB!');
                 }
                 return isJPG && isLt2M;
+            },
+            submitForm() {
+                let that = this;
+                this.show = false;
+                axios.post('https://elm.cangdu.org/shopping/updateshop', {
+                    id: this.form.id,
+                    name: this.form.name,
+                    address: this.form.address,
+                    description: this.form.intro,
+                    phone: this.form.tel,
+                    image_path: this.form.img,
+                    category: this.form.type,
+                }).then(function (r) {
+                    r.config.data = JSON.parse(r.config.data)
+                    console.log(r);
+                    that.form.id = r.config.data.id;
+                    that.form.address = r.config.data.address;
+                    that.form.intro = r.config.data.des;
+                    that.form.name = r.config.data.name;
+                    that.form.tel = r.config.data.phone;
+                    that.form.type = r.config.data.category;
+                    that.form.img = r.config.data.image_path;
+                    console.log(that.form.tel);
+                })
             }
         },
         created: function () {

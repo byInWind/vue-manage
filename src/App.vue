@@ -1,8 +1,6 @@
 <template>
     <div id="app">
-        <BaseAside></BaseAside>
-        <BaseContainer></BaseContainer>
-
+        <router-view></router-view>
     </div>
 </template>
 

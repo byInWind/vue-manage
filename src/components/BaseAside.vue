@@ -44,6 +44,10 @@
                 <i class="el-icon-edit"></i>
                 <span slot="title"> <router-link to="/views/my">个人中心 </router-link></span>
             </el-menu-item>
+            <el-menu-item index="5">
+                <i class="el-icon-edit"></i>
+                <span slot="title" @click="xx">个人中心</span>
+            </el-menu-item>
         </el-menu>
     </el-col>
 </template>
