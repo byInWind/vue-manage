@@ -9,6 +9,7 @@ export default new router({
             path: '/',
             name: 'home',
             component: () => import('./views/home.vue'),
+            props: true,
             children: [
                 {
                     path: '/views/user_list',

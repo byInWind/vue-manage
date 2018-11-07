@@ -45,8 +45,8 @@
                         user_name: that.user_name,
                         password: that.password,
                     }).then(function () {
-                        // router.push({path: '/views/user_list'})
-                        window.location.hash = "#/views/user_list"
+                        router.push({path: '/views/user_list'})
+                        // window.location.hash = "#/views/user_list"
                     })
                 }
             }

@@ -15,14 +15,14 @@
             <el-submenu index="2">
                 <template slot="title">
                     <i class="el-icon-plus"></i>
-                    <span slot="title">数据管理</span>
+                    <span slot="title">列表管理</span>
                 </template>
                 <el-menu-item-group>
-                    <router-link to="/views/shop_list">
+                    <router-link :to="{name:'shop_list', query: {text: ['列表管理','商家列表']}}">
                         <el-menu-item index="1-2">商家列表</el-menu-item>
                     </router-link>
                 </el-menu-item-group>
-                <router-link to="/views/user_list">
+                <router-link :to="{name:'user_list', query: {text: ['列表管理','用户列表']}}">
                     <el-menu-item index="1-1">用户列表</el-menu-item>
                 </router-link>
             </el-submenu>
@@ -32,21 +32,18 @@
                     <span slot="title">添加数据</span>
                 </template>
                 <el-menu-item-group>
-                    <router-link to="/views/add_shop">
+                    <router-link :to="{name:'add_shop', query: {text: ['添加数据','添加商铺']}}">
                         <el-menu-item index="1-1">添加商铺</el-menu-item>
                     </router-link>
-                    <router-link to="/views/add_goods">
+                    <router-link :to="{name:'add_goods', query: {text: ['添加数据','添加商品']}}">
                         <el-menu-item index="1-2">添加商品</el-menu-item>
                     </router-link>
                 </el-menu-item-group>
             </el-submenu>
             <el-menu-item index="4">
                 <i class="el-icon-edit"></i>
-                <span slot="title"> <router-link to="/views/my">个人中心 </router-link></span>
-            </el-menu-item>
-            <el-menu-item index="5">
-                <i class="el-icon-edit"></i>
-                <span slot="title" @click="xx">个人中心</span>
+                <span slot="title"><router-link style="color: white"
+                                                :to="{name:'my', query: {text: ['个人中心']}}">个人中心 </router-link></span>
             </el-menu-item>
         </el-menu>
     </el-col>
@@ -190,5 +187,9 @@
             position: fixed;
             width: 200px;
         }
+    }
+
+    a .el-menu-item {
+        padding-left: 60px !important;
     }
 </style>
