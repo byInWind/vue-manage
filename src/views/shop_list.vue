@@ -133,7 +133,7 @@
             return {
                 loading: false,
                 tableData: [],  //总的数据
-                currentPage: 1,
+                currentPage: 1,  ///默认页数
                 show: false,
                 // 获取row的key值
                 getRowKeys(row) {
@@ -191,7 +191,8 @@
             //currentPage 改变时会触发
             handleCurrentChange(val) {
                 console.log("当前页:" + val);
-                this.ajax(val)
+                this.ajax(val);
+                localStorage.setItem('currentPage', val)
             },
             handleEdit(index, row) {
                 console.log(index, row);
@@ -245,11 +246,15 @@
             }
         },
         created: function () {
+            this.currentPage = Number(localStorage.getItem('currentPage')) || 1;
             //获取数据
             this.ajax(null, () => {
                 // 在这里你想初始化的时候展开哪一行都可以了
                 this.expands.push(this.tableData[2].id);
             })
+        },
+        beforeDestroy() {
+            localStorage.setItem('currentPage', '1')
         }
     }
 </script>

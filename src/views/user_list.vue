@@ -86,11 +86,18 @@
             //currentPage 改变时会触发
             handleCurrentChange(val) {
                 console.log("当前页:" + val);
-                this.ajax(val)
+                this.ajax(val);
+                localStorage.setItem('currentPage', val)
             }
         },
         created: function () {
-            this.ajax()
+            this.currentPage = Number(localStorage.getItem('currentPage')) || 1;
+            this.ajax(this.currentPage);
+        },
+        beforeDestroy() {
+            // 路由跳转离开时销毁
+            console.log("beforeDestroy")
+            localStorage.setItem('currentPage', '1');
         }
     }
 </script>
