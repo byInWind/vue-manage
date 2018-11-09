@@ -64,7 +64,8 @@
                             size="mini"
                             @click="handleEdit(scope.$index, scope.row)">编辑
                     </el-button>
-                    <router-link to="/views/add_shop">
+                    <!--这里额外传了text，而这个页面不应该知道这个属性。。。。或许我应该用vuex来存储在baseaside里传的text,而不是query-->
+                    <router-link :to="{name:'add_goods',query:{id:111,text: ['添加数据','添加商铺']}}">
                         <el-button size="mini">添加
                         </el-button>
                     </router-link>
