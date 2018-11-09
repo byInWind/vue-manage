@@ -4,7 +4,7 @@
         <el-form ref="form" :model="form" label-width="80px">
             <el-form-item label="活动区域">
                 <el-select v-model="form.region" placeholder="请选择活动区域">
-                    <el-option label="区域一" value="item.name" v-for="(item,i) in category_list" :key="i"></el-option>
+                    <el-option v-for="(item,i) in itemArr" :label="item.name" :value="item.name" :key="i"></el-option>
                 </el-select>
             </el-form-item>
         </el-form>
@@ -46,7 +46,9 @@
                     price1: 0,
                     price2: 10
                 },
-                category_list: []
+                category_list: [],
+                id: null,
+                itemArr: []
             }
         },
         methods: {
@@ -57,36 +59,50 @@
                 console.log(value);
             },
             onSubmit() {
-                let id = this.$route.params.id
-                if (id) {
-
+                if (this.id) {
+                    axios.post('https://elm.cangdu.org/shopping/v2/updatefood', {
+                        item_id: 20,
+                        name: 20,
+                        image_path: 20,
+                        restaurant_id: 20,
+                        category_id: 20,
+                        specfoods: [{specs: '默认',packing_fee: 0,price: 20,}],
+                        description: 20
+                    }).then(function (response) {
+                        console.log(response);
+                        // that.tableData = arr;
+                        // that.loading = false;
+                    })
                 } else {
-                    alert('您需要先去选中店铺')
+                    this.$alert('您需要先去选中店铺', {
+                        confirmButtonText: '确定'
+                    });
                 }
             }
         },
-        mounted() {
-            let id = this.$route.query.id;
-            console.log(this.$route, id)
-        },
         created() {
-            let id = this.$route.query.id;
-            console.log(this.$route, id)
-            if (id) {
-                axios.get('https://elm.cangdu.org/shopping/getcategory/' + id,)
+            this.id = this.$route.query.id;
+            console.log(this.$route, this.id);
+            let that = this;
+            if (this.id) {
+                axios.get('https://elm.cangdu.org/shopping/getcategory/' + this.id,)
                     .then(function (response) {
-                        console.log(response.data);
-                        //清空数据
-                        // this.loading = false;
+                        that.itemArr = response.data.category_list;
                     })
             }
             else {
-                let xx = confirm('您需要先去选中店铺，是否去选择店铺');
-                if (xx) {
+                this.$confirm('您需要先去选中店铺，是否去选择店铺', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
                     route.push('/views/shop_list')
-                } else {
-                    // route.go(-1)
-                }
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消'
+                    })
+                })
             }
         }
     }
